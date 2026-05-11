@@ -101,6 +101,7 @@ Example XML files are included in the project:
 
 - `StudentsExample.xml`
 - `ExamExample.xml`
+- `StudentsExample_With_Invalid_Data.xml`
 
 These files can be used for testing student import and exam processing functionality.
 

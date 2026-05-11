@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Students>
+
+	<!-- Existing student - valid update -->
+	<Student>
+		<Id>1</Id>
+		<FirstName>Mile</FirstName>
+		<LastName>PetkovUpdated</LastName>
+		<Grade>5</Grade>
+	</Student>
+
+	<!-- Existing student - valid update -->
+	<Student>
+		<Id>2</Id>
+		<FirstName>Ana</FirstName>
+		<LastName>Petrova</LastName>
+		<Grade>4</Grade>
+	</Student>
+
+	<!-- Invalid - missing first name -->
+	<Student>
+		<Id>3</Id>
+		<FirstName></FirstName>
+		<LastName>Nikolov</LastName>
+		<Grade>3</Grade>
+	</Student>
+
+	<!-- Invalid - missing last name -->
+	<Student>
+		<Id>4</Id>
+		<FirstName>Elena</FirstName>
+		<LastName></LastName>
+		<Grade>5</Grade>
+	</Student>
+
+	<!-- Invalid - invalid grade -->
+	<Student>
+		<Id>5</Id>
+		<FirstName>Stefan</FirstName>
+		<LastName>Mitrev</LastName>
+		<Grade>10</Grade>
+	</Student>
+
+	<!-- New valid student -->
+	<Student>
+		<Id>11</Id>
+		<FirstName>Marija</FirstName>
+		<LastName>Stojanova</LastName>
+		<Grade>4</Grade>
+	</Student>
+
+	<!-- New valid student -->
+	<Student>
+		<Id>12</Id>
+		<FirstName>Petar</FirstName>
+		<LastName>Ristov</LastName>
+		<Grade>2</Grade>
+	</Student>
+
+	<!-- Invalid - missing ID -->
+	<Student>
+		<Id></Id>
+		<FirstName>Katerina</FirstName>
+		<LastName>Trajkova</LastName>
+		<Grade>5</Grade>
+	</Student>
+
+	<!-- Valid new student -->
+	<Student>
+		<Id>13</Id>
+		<FirstName>Viktor</FirstName>
+		<LastName>Dimov</LastName>
+		<Grade>3</Grade>
+	</Student>
+
+	<!-- Invalid - missing grade -->
+	<Student>
+		<Id>14</Id>
+		<FirstName>Sara</FirstName>
+		<LastName>Ivanova</LastName>
+		<Grade></Grade>
+	</Student>
+
+</Students>

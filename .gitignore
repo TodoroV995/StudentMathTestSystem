@@ -1,0 +1,20 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.slnLaunch.user
+*.db
+*.log
+
+# Visual Studio
+.vscode/
+.idea/
+
+# Build output
+Debug/
+Release/
+
+# NuGet
+packages/
+*.nupkg

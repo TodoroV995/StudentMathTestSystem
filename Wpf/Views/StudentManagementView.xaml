@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="Wpf.Views.StudentManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+        <Style x:Key="RequiredTextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="False">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Student Management"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1">
+
+            <GroupBox Header="Import Students from XML" Margin="0,0,0,15">
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBox Text="{Binding SelectedXmlFilePath}"
+                             Width="500"
+                             IsReadOnly="True"
+                             Margin="0,0,10,0"/>
+
+                    <Button Content="Browse XML"
+                            Width="120"
+                            Margin="0,0,10,0"
+                            Command="{Binding BrowseXmlCommand}"/>
+
+                    <Button Content="Import Students"
+                            Width="130"
+                            Command="{Binding ImportStudentsCommand}"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Student Details" Margin="0,0,0,15">
+                <StackPanel Margin="10">
+
+                    <WrapPanel Margin="0,0,0,10">
+                        <StackPanel Margin="0,0,15,0">
+                            <TextBlock Text="First Name"/>
+                            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="180"
+                                     Tag="{Binding IsFirstNameValid}"
+                                     ToolTip="First Name is required."
+                                     Style="{StaticResource RequiredTextBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,15,0">
+                            <TextBlock Text="Last Name"/>
+                            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="180"
+                                     Tag="{Binding IsLastNameValid}"
+                                     ToolTip="Last Name is required."
+                                     Style="{StaticResource RequiredTextBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,15,0">
+                            <TextBlock Text="Grade"/>
+                            <TextBox Text="{Binding Grade, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="100"
+                                     Tag="{Binding IsGradeValid}"
+                                     ToolTip="Grade is required and must be a number."
+                                     Style="{StaticResource RequiredTextBoxStyle}"/>
+                        </StackPanel>
+                    </WrapPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Add"
+                                Width="90"
+                                Margin="0,0,10,0"
+                                Command="{Binding AddStudentCommand}"/>
+
+                        <Button Content="Update"
+                                Width="90"
+                                Margin="0,0,10,0"
+                                Command="{Binding UpdateStudentCommand}"/>
+
+                        <Button Content="Delete"
+                                Width="90"
+                                Margin="0,0,10,0"
+                                Command="{Binding DeleteStudentCommand}"/>
+
+                        <Button Content="Clear"
+                                Width="90"
+                                Command="{Binding ClearCommand}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Students}"
+                  SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
+                  AutoGenerateColumns="False"
+                  CanUserSortColumns="True"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="80"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="Grade" Binding="{Binding Grade}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

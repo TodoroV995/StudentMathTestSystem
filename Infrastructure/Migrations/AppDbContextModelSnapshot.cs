@@ -17,34 +17,10 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.7")
+                .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Domain.Entities.AnswerOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("AnswerOptions");
-                });
 
             modelBuilder.Entity("Domain.Entities.MathTest", b =>
                 {
@@ -60,9 +36,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("NumberOfQuestions")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuestionType")
-                        .HasColumnType("int");
-
                     b.Property<int>("TimeLimitMinutes")
                         .HasColumnType("int");
 
@@ -73,31 +46,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MathTests");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Question", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CorrectAnswer")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MathTestId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MathTestId");
-
-                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
@@ -199,28 +147,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("TestResultTasks");
                 });
 
-            modelBuilder.Entity("Domain.Entities.AnswerOption", b =>
-                {
-                    b.HasOne("Domain.Entities.Question", "Question")
-                        .WithMany("AnswerOptions")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Question", b =>
-                {
-                    b.HasOne("Domain.Entities.MathTest", "MathTest")
-                        .WithMany("Questions")
-                        .HasForeignKey("MathTestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MathTest");
-                });
-
             modelBuilder.Entity("Domain.Entities.TestResult", b =>
                 {
                     b.HasOne("Domain.Entities.MathTest", "MathTest")
@@ -253,14 +179,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.MathTest", b =>
                 {
-                    b.Navigation("Questions");
-
                     b.Navigation("TestResults");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Question", b =>
-                {
-                    b.Navigation("AnswerOptions");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>

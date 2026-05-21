@@ -16,11 +16,6 @@
                 <TabControl Margin="10">
 
                     <TabItem Header="Students">
-                        <!--<Grid Margin="20">
-                            <TextBlock Text="Student Management"
-                                       FontSize="26"
-                                       FontWeight="Bold" />
-                        </Grid>-->
                         <views:StudentManagementView/>
                     </TabItem>
 
